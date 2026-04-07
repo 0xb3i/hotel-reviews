@@ -5,7 +5,7 @@ describe("导入契约校验", () => {
   it("应包含 json/date 与派生字段规则", () => {
     const contractPath = path.resolve(
       process.cwd(),
-      "../specs/001-hotel-review-browser/contracts/comments-import-contract.md"
+      "../insforge/contracts/comments-import-contract.md"
     );
     const text = readFileSync(contractPath, "utf-8");
 

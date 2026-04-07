@@ -1,35 +1,92 @@
 # onlineReview
 
-花园酒店评论浏览项目，采用 Next.js 前端与既有数据契约进行评论检索与展示。
+onlineReview 是一个酒店评论浏览与筛选系统，面向“评论检索、结构化筛选、图文查看、信任信息展示”场景。
 
-## 项目结构
+## 目录
 
-- frontend: 前端应用（搜索、筛选、分页、图片查看、UI 重构）
-- insforge: 既有后端 SQL 与契约参考（本次前端重构不改后端契约）
-- public: 示例数据文件
-- specs: Speckit 规格、计划、任务与验收文档
+- 项目简介
+- 功能概览
+- 技术栈
+- 目录结构
+- 快速开始
+- 环境变量
+- 数据与导入
+- 质量保障
 
-## 本地开发
+## 项目简介
 
-在 frontend 目录执行：
+本项目以前端体验为核心，围绕酒店评论数据提供以下能力：
 
-- npm install
-- npm run dev
+- 关键词搜索与多维筛选
+- 排序与分页
+- 评论卡片与图片预览
+- 评分与信任信号展示
 
-## 质量检查
+在不改变既有后端契约的前提下，已完成 OTA 风格界面重构。
 
-在 frontend 目录执行：
+## 功能概览
 
-- npm test
-- npm run lint
-- npm run build
+- 评论列表检索：支持关键词、筛选条件和排序组合
+- 评论详情体验：支持图片展示、信息摘要与辅助元信息
+- 响应式布局：兼容桌面与移动端
+- 稳定性保障：包含契约测试、集成测试与基础构建校验
 
-## 当前重构目标（002-ota-frontend-refactor）
+## 技术栈
 
-在不修改现有 API 契约与业务行为的前提下，将评论列表页重构为 OTA 风格目录体验，重点包括：
+- 前端：Next.js App Router + React + TypeScript
+- 测试：Vitest + Testing Library
+- 代码质量：ESLint
+- 数据侧：InsForge（SQL 与数据导入脚本）
 
-- Swiss Modernism 2.0 信息层级与设计令牌
-- 更清晰的搜索筛选交互
-- review-first 卡片与信任信号
-- 桌面与移动端一致的响应式体验
-- 价格比较清晰度提示（当前契约无价格字段）
+## 目录结构
+
+```text
+frontend/    前端应用代码（页面、组件、样式、测试）
+insforge/    数据库迁移与 SQL 脚本
+public/      数据样本与静态资源
+```
+
+## 快速开始
+
+### 1. 安装依赖
+
+```bash
+cd frontend
+npm install
+```
+
+### 2. 启动开发环境
+
+```bash
+npm run dev
+```
+
+默认访问地址：`http://localhost:3000`
+
+## 环境变量
+
+1. 复制示例文件：
+
+```bash
+cp frontend/.env.example frontend/.env
+```
+
+2. 按需填写实际配置（例如 InsForge 连接相关变量）。
+
+## 数据与导入
+
+- 原始数据：`public/enriched_comments.csv`
+- 迁移脚本：`insforge/migrations/`
+- 查询与导入脚本：`insforge/sql/`
+
+如需重新导入数据，建议按“建表/索引 -> 分片导入 -> 校验”顺序执行。
+
+## 质量保障
+
+在 `frontend` 目录执行：
+
+```bash
+npm test
+npm run lint
+npm run build
+```

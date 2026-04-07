@@ -5,7 +5,7 @@ describe("评论 API 契约基线", () => {
   it("应包含列表与详情接口", () => {
     const contractPath = path.resolve(
       process.cwd(),
-      "../specs/001-hotel-review-browser/contracts/comments-api.yaml"
+      "../insforge/contracts/comments-api.yaml"
     );
     const text = readFileSync(contractPath, "utf-8");
 

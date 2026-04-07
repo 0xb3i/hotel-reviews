@@ -7,4 +7,4 @@
 - 分类字典与校验 SQL
 - 查询 SQL（筛选、关键词搜索、排序、分页）
 
-执行顺序建议参考 specs/001-hotel-review-browser/quickstart.md。
+执行顺序建议参考 `insforge/contracts/comments-import-contract.md` 与本目录 SQL 文件头注释。
