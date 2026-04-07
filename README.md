@@ -1,4 +1,4 @@
-# onlineReview
+# hotel-reviews
 
 hotel-reviews 是一个酒店评论浏览与筛选系统，面向“评论检索、结构化筛选、图文查看”场景。
 
