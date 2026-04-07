@@ -4,6 +4,7 @@
 **Created**: [DATE]  
 **Status**: Draft  
 **Input**: User description: "$ARGUMENTS"
+**文档语言**: 本文档必须使用简体中文；代码标识符、协议字段与命令可保留英文原文。
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -94,6 +95,14 @@
 
 - **FR-006**: System MUST authenticate users via [NEEDS CLARIFICATION: auth method not specified - email/password, SSO, OAuth?]
 - **FR-007**: System MUST retain user data for [NEEDS CLARIFICATION: retention period not specified]
+
+### 质量与非功能要求 *(mandatory)*
+
+- **NFR-QA-001**: 代码实现必须满足项目约定的格式化、静态检查和代码评审要求。
+- **NFR-TEST-001**: 每项新增或变更行为必须定义可执行测试策略，并可在验收场景中验证。
+- **NFR-UX-001**: 用户可见功能必须遵循统一交互与文案规范，并明确关键可访问性要求。
+- **NFR-PERF-001**: 必须定义关键路径性能预算（延迟、吞吐或资源占用）及测量方法。
+- **NFR-DOC-001**: 本功能相关规格、计划、任务、快速开始和评审记录必须使用简体中文。
 
 ### Key Entities *(include if feature involves data)*
 

@@ -8,9 +8,10 @@ description: "Task list template for feature implementation"
 **Input**: Design documents from `/specs/[###-feature-name]/`
 **Prerequisites**: plan.md (required), spec.md (required for user stories), research.md, data-model.md, contracts/
 
-**Tests**: The examples below include test tasks. Tests are OPTIONAL - only include them if explicitly requested in the feature specification.
+**Tests**: 对新增或变更行为，测试任务是必需项。仅在纯文档或纯配置且无行为变化时可书面豁免。
 
 **Organization**: Tasks are grouped by user story to enable independent implementation and testing of each story.
+**文档语言**: 任务描述、验收说明与执行记录必须使用简体中文。
 
 ## Format: `[ID] [P?] [Story] Description`
 
@@ -24,6 +25,14 @@ description: "Task list template for feature implementation"
 - **Web app**: `backend/src/`, `frontend/src/`
 - **Mobile**: `api/src/`, `ios/src/` or `android/src/`
 - Paths shown below assume single project - adjust based on plan.md structure
+
+## Constitution Alignment Checklist *(mandatory)*
+
+- 任务清单必须包含代码质量门禁任务（格式化、静态检查、评审整改）。
+- 任务清单必须包含测试任务（单元/集成/契约按影响范围覆盖）。
+- 任务清单必须包含体验一致性任务（交互规范、文案一致性、可访问性检查）。
+- 任务清单必须包含性能任务（预算验证、压测或基准测试、结果记录）。
+- 任务清单必须包含中文文档同步任务（规格、快速开始、发布说明或运维说明）。
 
 <!-- 
   ============================================================================
@@ -79,7 +88,7 @@ Examples of foundational tasks (adjust based on your project):
 
 **Independent Test**: [How to verify this story works on its own]
 
-### Tests for User Story 1 (OPTIONAL - only if tests requested) ⚠️
+### Tests for User Story 1 (MANDATORY for behavior changes) ⚠️
 
 > **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
 
@@ -105,7 +114,7 @@ Examples of foundational tasks (adjust based on your project):
 
 **Independent Test**: [How to verify this story works on its own]
 
-### Tests for User Story 2 (OPTIONAL - only if tests requested) ⚠️
+### Tests for User Story 2 (MANDATORY for behavior changes) ⚠️
 
 - [ ] T018 [P] [US2] Contract test for [endpoint] in tests/contract/test_[name].py
 - [ ] T019 [P] [US2] Integration test for [user journey] in tests/integration/test_[name].py
@@ -127,7 +136,7 @@ Examples of foundational tasks (adjust based on your project):
 
 **Independent Test**: [How to verify this story works on its own]
 
-### Tests for User Story 3 (OPTIONAL - only if tests requested) ⚠️
+### Tests for User Story 3 (MANDATORY for behavior changes) ⚠️
 
 - [ ] T024 [P] [US3] Contract test for [endpoint] in tests/contract/test_[name].py
 - [ ] T025 [P] [US3] Integration test for [user journey] in tests/integration/test_[name].py
@@ -150,10 +159,11 @@ Examples of foundational tasks (adjust based on your project):
 
 **Purpose**: Improvements that affect multiple user stories
 
-- [ ] TXXX [P] Documentation updates in docs/
-- [ ] TXXX Code cleanup and refactoring
-- [ ] TXXX Performance optimization across all stories
-- [ ] TXXX [P] Additional unit tests (if requested) in tests/unit/
+- [ ] TXXX [P] Documentation updates in docs/ (简体中文)
+- [ ] TXXX Execute linting/static-analysis and close all blocking quality issues
+- [ ] TXXX Validate UX consistency and accessibility checklist across all stories
+- [ ] TXXX Measure against performance budgets and record benchmark/load-test evidence
+- [ ] TXXX [P] Additional unit tests in tests/unit/
 - [ ] TXXX Security hardening
 - [ ] TXXX Run quickstart.md validation
 
@@ -178,7 +188,7 @@ Examples of foundational tasks (adjust based on your project):
 
 ### Within Each User Story
 
-- Tests (if included) MUST be written and FAIL before implementation
+- Tests MUST be written and FAIL before implementation for every behavior change
 - Models before services
 - Services before endpoints
 - Core implementation before integration
@@ -198,7 +208,7 @@ Examples of foundational tasks (adjust based on your project):
 ## Parallel Example: User Story 1
 
 ```bash
-# Launch all tests for User Story 1 together (if tests requested):
+# Launch all tests for User Story 1 together:
 Task: "Contract test for [endpoint] in tests/contract/test_[name].py"
 Task: "Integration test for [user journey] in tests/integration/test_[name].py"
 

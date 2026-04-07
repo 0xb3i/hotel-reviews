@@ -2,6 +2,7 @@
 
 **Branch**: `[###-feature-name]` | **Date**: [DATE] | **Spec**: [link]
 **Input**: Feature specification from `/specs/[###-feature-name]/spec.md`
+**文档语言**: 本计划及其产出文档必须使用简体中文；代码标识符与命令可保留英文原文。
 
 **Note**: This template is filled in by the `/speckit.plan` command. See `.specify/templates/plan-template.md` for the execution workflow.
 
@@ -31,7 +32,11 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+- [ ] 代码质量门禁：明确格式化、静态检查、评审规则与失败即阻断策略。
+- [ ] 测试门禁：明确新增/变更行为对应的测试层级（单元/集成/契约）与回归策略。
+- [ ] 体验一致性门禁：明确交互规范、视觉规范、文案规范与可访问性基线。
+- [ ] 性能门禁：定义关键路径性能预算（如 p95 延迟、吞吐、内存）及测量方案。
+- [ ] 文档门禁：确认 spec、plan、research、data-model、quickstart、tasks 以简体中文编写。
 
 ## Project Structure
 

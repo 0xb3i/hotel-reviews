@@ -1,0 +1,25 @@
+-- 创建 comments 表，包含 CSV 全字段与派生字段
+create table if not exists comments (
+  _id text primary key,
+  comment text not null,
+  images jsonb not null default '[]'::jsonb,
+  score numeric(2, 1) not null,
+  publish_date date not null,
+  room_type text,
+  fuzzy_room_type text,
+  travel_type text,
+  comment_len integer not null,
+  log_comment_len numeric(10, 6) not null,
+  useful_count integer not null,
+  log_useful_count numeric(10, 6) not null,
+  review_count integer not null,
+  log_review_count numeric(10, 6) not null,
+  quality_score integer not null,
+  categories jsonb not null default '[]'::jsonb,
+  category1 text,
+  category2 text,
+  category3 text,
+  star integer not null check (star between 1 and 5),
+  created_at timestamptz not null default now(),
+  updated_at timestamptz not null default now()
+);

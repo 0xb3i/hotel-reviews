@@ -1,50 +1,81 @@
-# [PROJECT_NAME] Constitution
-<!-- Example: Spec Constitution, TaskFlow Constitution, etc. -->
+<!--
+Sync Impact Report
+- Version change: 模板占位版本 -> 1.0.0
+- Modified principles:
+	- 模板原则 1 -> I. 代码质量优先且可审计
+	- 模板原则 2 -> II. 测试标准先行且可回归
+	- 模板原则 3 -> III. 用户体验一致性不可破坏
+	- 模板原则 4 -> IV. 性能预算必须定义并验证
+	- 模板原则 5 -> V. 中文文档是交付物的一部分
+- Added sections:
+	- 无（保留模板章节结构，仅完成具体化）
+- Removed sections:
+	- 无
+- Templates requiring updates:
+	- ✅ .specify/templates/plan-template.md
+	- ✅ .specify/templates/spec-template.md
+	- ✅ .specify/templates/tasks-template.md
+	- ⚠ pending: .specify/templates/commands/*.md（目录不存在，未发现可更新文件）
+- Follow-up TODOs:
+	- 无
+-->
+
+# onlineReview Constitution
 
 ## Core Principles
 
-### [PRINCIPLE_1_NAME]
-<!-- Example: I. Library-First -->
-[PRINCIPLE_1_DESCRIPTION]
-<!-- Example: Every feature starts as a standalone library; Libraries must be self-contained, independently testable, documented; Clear purpose required - no organizational-only libraries -->
+### I. 代码质量优先且可审计
+- 所有合并到主干的代码必须通过格式化、静态检查与代码评审三道门禁。
+- 每个变更必须在提交说明中给出设计意图、边界条件和回退策略。
+- 重复逻辑必须在同一迭代内收敛为可复用模块；新增复杂分支必须记录复杂度理由。
+- 理由：代码质量是可维护性和交付稳定性的基础，审计链路完整可降低长期维护成本。
 
-### [PRINCIPLE_2_NAME]
-<!-- Example: II. CLI Interface -->
-[PRINCIPLE_2_DESCRIPTION]
-<!-- Example: Every library exposes functionality via CLI; Text in/out protocol: stdin/args → stdout, errors → stderr; Support JSON + human-readable formats -->
+### II. 测试标准先行且可回归
+- 新增或变更行为必须配套可自动执行的测试，测试类型按影响范围覆盖单元、集成或契约层。
+- 缺陷修复必须先补回归测试，并以先失败后通过的方式验证修复有效性。
+- 持续集成中的测试失败或不稳定用例不得忽略，必须在合并前修复或隔离并记录时限。
+- 理由：统一测试标准可将缺陷前移，防止已修复问题在后续版本回归。
 
-### [PRINCIPLE_3_NAME]
-<!-- Example: III. Test-First (NON-NEGOTIABLE) -->
-[PRINCIPLE_3_DESCRIPTION]
-<!-- Example: TDD mandatory: Tests written → User approved → Tests fail → Then implement; Red-Green-Refactor cycle strictly enforced -->
+### III. 用户体验一致性不可破坏
+- 所有用户可见变更必须遵循统一交互模式、视觉规范与文案风格。
+- 同一用户任务在不同页面或终端中的关键操作路径必须保持一致。
+- 关键流程必须满足可访问性基线，至少覆盖键盘可达、可读标签与错误提示可理解性。
+- 理由：一致体验可降低学习成本，提升任务完成率和整体产品可信度。
 
-### [PRINCIPLE_4_NAME]
-<!-- Example: IV. Integration Testing -->
-[PRINCIPLE_4_DESCRIPTION]
-<!-- Example: Focus areas requiring integration tests: New library contract tests, Contract changes, Inter-service communication, Shared schemas -->
+### IV. 性能预算必须定义并验证
+- 每个功能在规格阶段必须定义可量化性能预算，至少包含关键路径延迟与资源占用指标。
+- 交付前必须使用接近真实负载的数据进行测量，并在评审记录中附上结果。
+- 若性能指标较基线退化超过 10%，该变更不得直接发布，除非取得书面豁免与补救计划。
+- 理由：性能要求若不前置量化，后期修复成本高且易影响用户体验。
 
-### [PRINCIPLE_5_NAME]
-<!-- Example: V. Observability, VI. Versioning & Breaking Changes, VII. Simplicity -->
-[PRINCIPLE_5_DESCRIPTION]
-<!-- Example: Text I/O ensures debuggability; Structured logging required; Or: MAJOR.MINOR.BUILD format; Or: Start simple, YAGNI principles -->
+### V. 中文文档是交付物的一部分
+- 本项目全部文档必须使用简体中文书写，包括规格、计划、任务、快速开始、评审记录与发布说明。
+- 代码标识符、协议字段和命令行参数可保留英文原文，但必须在文档中提供中文语义说明。
+- 任何代码变更若影响行为或运维方式，必须同步更新对应中文文档后方可合并。
+- 理由：统一语言可提升团队沟通效率，降低需求理解偏差与交接风险。
 
-## [SECTION_2_NAME]
-<!-- Example: Additional Constraints, Security Requirements, Performance Standards, etc. -->
+## 质量门禁与交付标准
 
-[SECTION_2_CONTENT]
-<!-- Example: Technology stack requirements, compliance standards, deployment policies, etc. -->
+- 合并门禁必须包含五项检查：代码质量、测试完整性、体验一致性、性能达标、中文文档同步。
+- 每个发布版本必须保留可追溯证据：测试报告、性能数据、评审结论与文档变更记录。
+- 任何不满足门禁的变更必须创建带责任人和截止日期的豁免记录，且最长不得超过两个迭代。
 
-## [SECTION_3_NAME]
-<!-- Example: Development Workflow, Review Process, Quality Gates, etc. -->
+## 研发流程与评审机制
 
-[SECTION_3_CONTENT]
-<!-- Example: Code review requirements, testing gates, deployment approval process, etc. -->
+- 需求阶段：规格文档必须明确质量约束、测试策略、体验一致性要求和性能预算。
+- 计划阶段：实施计划必须在 Constitution Check 中逐条映射本宪章原则并给出验证方法。
+- 开发阶段：行为变更必须先完善测试，再进行实现与重构，确保可回归验证。
+- 评审阶段：评审人必须按统一清单逐项核验，不得以口头承诺替代证据。
+- 发布阶段：上线前必须确认性能与体验指标满足验收标准，并完成中文文档更新。
 
 ## Governance
-<!-- Example: Constitution supersedes all other practices; Amendments require documentation, approval, migration plan -->
 
-[GOVERNANCE_RULES]
-<!-- Example: All PRs/reviews must verify compliance; Complexity must be justified; Use [GUIDANCE_FILE] for runtime development guidance -->
+- 本宪章高于项目内其他流程性约定；若出现冲突，以本宪章为准。
+- 修订流程：提出修订的变更请求必须包含修订动机、影响分析、迁移策略，并经至少两名维护者批准后生效。
+- 版本策略采用语义化规则：
+	- MAJOR：删除原则、重定义原则或引入不兼容治理变更。
+	- MINOR：新增原则、章节或实质性扩展强制要求。
+	- PATCH：措辞澄清、错别字修复或不改变治理语义的编辑。
+- 合规审查要求：每个合并请求必须附带宪章合规清单；每个迭代至少执行一次抽样审计并跟踪整改闭环。
 
-**Version**: [CONSTITUTION_VERSION] | **Ratified**: [RATIFICATION_DATE] | **Last Amended**: [LAST_AMENDED_DATE]
-<!-- Example: Version: 2.1.1 | Ratified: 2025-06-13 | Last Amended: 2025-07-16 -->
+**Version**: 1.0.0 | **Ratified**: 2026-04-05 | **Last Amended**: 2026-04-05

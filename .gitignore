@@ -1,0 +1,56 @@
+# Node / TypeScript
+node_modules/
+frontend/node_modules/
+.next/
+frontend/.next/
+dist/
+build/
+coverage/
+*.tsbuildinfo
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Environment files
+.env
+.env.*
+!.env.example
+.insforge/
+insforge/.tmp/
+
+# Python (workspace tooling)
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Editors / OS
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp
+.vscode/
+.idea/
+
+# Test outputs
+vitest-report/
+
+# InsForge & AI agent skills
+.insforge
+.agent
+.agents
+.kiro/
+.augment
+.claude
+.cline
+.github/copilot*
+.kilocode
+.qoder
+.qwen
+.roo
+skills/
+skills-lock.json
+.trae
+.windsurf

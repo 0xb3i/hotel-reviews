@@ -1,0 +1,157 @@
+openapi: 3.1.0
+info:
+  title: 评论浏览查询接口契约
+  version: 1.0.0
+  description: 用于前端评论筛选、关键词搜索、分页和详情查看的接口契约。
+servers:
+  - url: https://api.example.com
+paths:
+  /comments:
+    get:
+      summary: 查询评论列表
+      parameters:
+        - in: query
+          name: keyword
+          schema:
+            type: string
+          description: 关键词，匹配评论正文
+        - in: query
+          name: date_from
+          schema:
+            type: string
+            format: date
+        - in: query
+          name: date_to
+          schema:
+            type: string
+            format: date
+        - in: query
+          name: star
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 5
+        - in: query
+          name: travel_type
+          schema:
+            type: string
+        - in: query
+          name: fuzzy_room_type
+          schema:
+            type: string
+        - in: query
+          name: category
+          schema:
+            type: string
+            enum: [房间设施, 公共设施, 餐饮设施, 前台服务, 客房服务, 退房/入住效率, 交通便利性, 周边配套, 景观/朝向, 性价比, 价格合理性, 整体满意度, 安静程度, 卫生状况]
+        - in: query
+          name: sort_by
+          schema:
+            type: string
+            enum: [publish_date, score, useful_count, review_count]
+            default: publish_date
+        - in: query
+          name: sort_order
+          schema:
+            type: string
+            enum: [asc, desc]
+            default: desc
+        - in: query
+          name: page
+          schema:
+            type: integer
+            minimum: 1
+            default: 1
+        - in: query
+          name: page_size
+          schema:
+            type: integer
+            minimum: 1
+            maximum: 100
+            default: 20
+      responses:
+        "200":
+          description: 成功返回评论列表
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CommentListResponse"
+  /comments/{id}:
+    get:
+      summary: 获取评论详情
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: 返回单条评论详情
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Comment"
+        "404":
+          description: 未找到评论
+components:
+  schemas:
+    Comment:
+      type: object
+      required: [_id, comment, score, star, publish_date, images, categories]
+      properties:
+        _id:
+          type: string
+        comment:
+          type: string
+        images:
+          type: array
+          items:
+            type: string
+        score:
+          type: number
+        star:
+          type: integer
+          minimum: 1
+          maximum: 5
+        publish_date:
+          type: string
+          format: date
+        room_type:
+          type: string
+        fuzzy_room_type:
+          type: string
+        travel_type:
+          type: string
+        comment_len:
+          type: integer
+        useful_count:
+          type: integer
+        review_count:
+          type: integer
+        quality_score:
+          type: integer
+        categories:
+          type: array
+          items:
+            type: string
+        category1:
+          type: string
+        category2:
+          type: string
+        category3:
+          type: string
+    CommentListResponse:
+      type: object
+      required: [total, page, page_size, items]
+      properties:
+        total:
+          type: integer
+        page:
+          type: integer
+        page_size:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: "#/components/schemas/Comment"
