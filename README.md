@@ -43,13 +43,11 @@ npm run dev
 
 ## 环境变量
 
-1. 复制示例文件：
+复制示例文件：
 
 ```bash
 cp frontend/.env.example frontend/.env
 ```
-
-2. 按需填写实际配置。
 
 ## 数据与导入
 
